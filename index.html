@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <base target="_self">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Фотограф | Портфолио</title>
+    <meta name="description" content="Профессиональное портфолио фотографа с современным градиентным дизайном">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#667eea",
+                        secondary: "#764ba2",
+                        accent: "#f093fb"
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .portfolio-item {
+            transition: all 0.3s ease;
+        }
+        .portfolio-item:hover {
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-white font-sans">
+    <!-- Header -->
+    <header class="gradient-bg text-white sticky top-0 z-50 shadow-lg">
+        <nav class="container mx-auto px-4 py-4">
+            <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+                <div class="text-2xl font-bold">
+                    <span class="gradient-text bg-white">ФотоАрт</span>
+                </div>
+                
+                <div class="flex flex-wrap justify-center gap-4 md:gap-8">
+                    <a href="#home" class="nav-link hover:text-pink-200 transition-colors" onclick="handleNavigation(event, 'home')">Главная</a>
+                    <a href="#portfolio" class="nav-link hover:text-pink-200 transition-colors" onclick="handleNavigation(event, 'portfolio')">Портфолио</a>
+                    <a href="#about" class="nav-link hover:text-pink-200 transition-colors" onclick="handleNavigation(event, 'about')">Обо мне</a>
+                    <a href="#contact" class="nav-link hover:text-pink-200 transition-colors" onclick="handleNavigation(event, 'contact')">Контакты</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="gradient-bg text-white py-16 md:py-24">
+            <div class="container mx-auto px-4 text-center">
+                <h1 class="text-4xl md:text-6xl font-bold mb-6 animate-pulse">
+                    Профессиональная фотография
+                </h1>
+                <p class="text-xl md:text-2xl mb-8 opacity-90">
+                    Запечатлеваю моменты, которые остаются навсегда
+                </p>
+                <button onclick="handleNavigation(null, 'portfolio')" class="bg-white text-purple-600 px-8 py-3 rounded-full font-semibold hover:bg-pink-100 transition-colors shadow-lg">
+                    Смотреть работы
+                </button>
+            </div>
+        </section>
+
+        <!-- Portfolio Section -->
+        <section id="portfolio" class="py-16 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 gradient-text">Мое портфолио</h2>
+                
+                <!-- Image Upload Section -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 mb-12">
+                    <h3 class="text-2xl font-semibold mb-4 text-gray-800">Добавить фото в портфолио</h3>
+                    <div class="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
+                        <i class="fas fa-cloud-upload-alt text-4xl text-gray-400 mb-4"></i>
+                        <p class="text-gray-600 mb-4">Перетащите сюда фото или нажмите для загрузки</p>
+                        <input type="file" id="imageUpload" accept="image/*" multiple class="hidden">
+                        <button onclick="document.getElementById('imageUpload').click()" class="gradient-bg text-white px-6 py-2 rounded-full hover:opacity-90 transition-opacity">
+                            Выбрать файлы
+                        </button>
+                    </div>
+                    <div id="uploadStatus" class="mt-4 text-sm text-gray-600"></div>
+                </div>
+
+                <!-- Portfolio Grid -->
+                <div id="portfolioGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Portfolio items will be dynamically added here -->
+                    <div class="portfolio-item bg-white rounded-2xl shadow-lg overflow-hidden">
+                        <img src="images/work1.jpg" alt="Портретная фотография" class="w-full h-48 object-cover" loading="lazy">
+                        <div class="p-4">
+                            <h3 class="font-semibold text-lg mb-2">Портретная съемка</h3>
+                            <p class="text-gray-600 text-sm">Эмоции в каждом кадре</p>
+                        </div>
+                    </div>
+                    
+                    <div class="portfolio-item bg-white rounded-2xl shadow-lg overflow-hidden">
+                        <img src="images/work2.jpg" alt="Пейзажная фотография" class="w-full h-48 object-cover" loading="lazy">
+                        <div class="p-4">
+                            <h3 class="font-semibold text-lg mb-2">Пейзажи</h3>
+                            <p class="text-gray-600 text-sm">Красота природы</p>
+                        </div>
+                    </div>
+                    
+                    <div class="portfolio-item bg-white rounded-2xl shadow-lg overflow-hidden">
+                        <img src="images/work3.jpg" alt="Свадебная фотография" class="w-full h-48 object-cover" loading="lazy">
+                        <div class="p-4">
+                            <h3 class="font-semibold text-lg mb-2">Свадьбы</h3>
+                            <p class="text-gray-600 text-sm">Самые важные моменты</p>
+                        </div>
+                    </div>
+                    <div class="portfolio-item bg-white rounded-2xl shadow-lg overflow-hidden">
+                        <img src="/images/work5.PNG" alt="Фотосессия" class="w-full h-48 object-cover" loading="lazy">
+                        <div class="p-4">
+                            <h3 class="font-semibold text-lg mb-2">Фотосессия</h3>
+                            <p class="text-gray-600 text-sm">Для себя</p>
+                        </div>
+                    </div>
+                    <div class="portfolio-item bg-white rounded-2xl shadow-lg overflow-hidden">
+                        <img src="/images/work6.PNG" alt="Фотосессия" class="w-full h-48 object-cover" loading="lazy">
+                        <div class="p-4">
+                            <h3 class="font-semibold text-lg mb-2">Фотосессия</h3>
+                            <p class="text-gray-600 text-sm">Получение новых образов и живых кадров</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <img src="https://picsum.photos/400/500?random=4" alt="Фотограф за работой" class="w-full rounded-2xl shadow-lg" loading="lazy">
+                    </div>
+                    <div>
+                        <h2 class="text-3xl md:text-4xl font-bold mb-6 gradient-text">Обо мне</h2>
+                        <p class="text-gray-700 mb-4 text-lg">
+                            Профессиональный фотограф с более чем 5-летним опытом работы. 
+                            Специализируюсь на портретной, свадебной и пейзажной фотографии.
+                        </p>
+                        <p class="text-gray-700 mb-6 text-lg">
+                            Моя цель - запечатлеть искренние эмоции и создать фотографии, 
+                            которые будут радовать вас долгие годы.
+                        </p>
+                        <div class="flex flex-wrap gap-4">
+                            <div class="flex items-center space-x-2">
+                                <i class="fas fa-camera text-purple-600"></i>
+                                <span class="text-gray-700">Профессиональная техника</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <i class="fas fa-heart text-purple-600"></i>
+                                <span class="text-gray-700">Индивидуальный подход</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <i class="fas fa-award text-purple-600"></i>
+                                <span class="text-gray-700">Опыт работы 5+ лет</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-16 gradient-bg text-white">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Свяжитесь со мной</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl mx-auto">
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-6">Контакты</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center space-x-4">
+                                <i class="fas fa-phone text-xl"></i>
+                                <span>+7 (953) 600-52-58</span>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <i class="fas fa-envelope text-xl"></i>
+                                <span>ksyusha.rodionova@mail.ru</span>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <i class="fas fa-map-marker-alt text-xl"></i>
+                                <span>Екатеринбург, Россия</span>
+                            </div>
+                        </div>
+                        <div class="mt-8 flex space-x-4">
+                            <a href="#" class="social-link bg-white text-purple-600 w-10 h-10 rounded-full flex items-center justify-center hover:bg-pink-100 transition-colors">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="social-link bg-white text-purple-600 w-10 h-10 rounded-full flex items-center justify-center hover:bg-pink-100 transition-colors">
+                                <i class="fab fa-vk"></i>
+                            </a>
+                            <a href="#" class="social-link bg-white text-purple-600 w-10 h-10 rounded-full flex items-center justify-center hover:bg-pink-100 transition-colors">
+                                <i class="fab fa-telegram"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <form id="contactForm" class="space-y-4">
+                            <input type="text" placeholder="Ваше имя" class="w-full px-4 py-3 rounded-lg bg-white bg-opacity-20 backdrop-blur-sm border border-white border-opacity-30 text-white placeholder-white placeholder-opacity-70 focus:outline-none focus:ring-2 focus:ring-white">
+                            <input type="email" placeholder="Ваш email" class="w-full px-4 py-3 rounded-lg bg-white bg-opacity-20 backdrop-blur-sm border border-white border-opacity-30 text-white placeholder-white placeholder-opacity-70 focus:outline-none focus:ring-2 focus:ring-white">
+                            <textarea placeholder="Ваше сообщение" rows="4" class="w-full px-4 py-3 rounded-lg bg-white bg-opacity-20 backdrop-blur-sm border border-white border-opacity-30 text-white placeholder-white placeholder-opacity-70 focus:outline-none focus:ring-2 focus:ring-white"></textarea>
+                            <button type="submit" class="w-full bg-white text-purple-600 py-3 rounded-lg font-semibold hover:bg-pink-100 transition-colors">
+                                Отправить сообщение
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2025 ФотоАрт. Все права защищены.</p>
+            <p class="mt-2 text-gray-400">Создано с ❤️ для прекрасных моментов</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation handling
+        function handleNavigation(event, sectionId) {
+            if (event) event.preventDefault();
+            document.getElementById(sectionId).scrollIntoView({ 
+                behavior: 'smooth' 
+            });
+        }
+
+        // Image upload functionality
+        const imageUpload = document.getElementById('imageUpload');
+        const portfolioGrid = document.getElementById('portfolioGrid');
+        const uploadStatus = document.getElementById('uploadStatus');
+
+        imageUpload.addEventListener('change', function(e) {
+            const files = e.target.files;
+            if (files.length > 0) {
+                uploadStatus.textContent = `Загружено ${files.length} файл(ов)`;
+                
+                Array.from(files).forEach((file, index) => {
+                    if (file.type.startsWith('images/')) {
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            const portfolioItem = document.createElement('div');
+                            portfolioItem.className = 'portfolio-item bg-white rounded-2xl shadow-lg overflow-hidden';
+                            portfolioItem.innerHTML = `
+                                <img src="${e.target.result}" alt="Загруженное фото ${index + 1}" class="w-full h-48 object-cover" loading="lazy">
+                                <div class="p-4">
+                                    <h3 class="font-semibold text-lg mb-2">Новое фото</h3>
+                                    <p class="text-gray-600 text-sm">Загружено с устройства</p>
+                                </div>
+                            `;
+                            portfolioGrid.prepend(portfolioItem);
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                });
+                
+                // Clear the input
+                imageUpload.value = '';
+            }
+        });
+
+        // Contact form handling
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Сообщение отправлено! Я свяжусь с вами в ближайшее время.');
+            this.reset();
+        });
+
+        // Add smooth scrolling to all navigation links
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                handleNavigation(e, targetId);
+            });
+        });
+
+        // Initialize with some sample uploaded images
+        window.addEventListener('load', function() {
+            uploadStatus.textContent = 'Готов к загрузке фото с вашего устройства';
+        });
+    </script>
+</body>
+</html>
